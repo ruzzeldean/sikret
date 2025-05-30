@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audit Trail | Admin</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="FAV.webp" type="image/png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #333;
+        }
+        header {
+            background-color: #007BFF;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        table {
+            width: 90%;
+            margin: 2rem auto;
+            border-collapse: collapse;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+        .filter-container {
+            width: 90%;
+            margin: 1rem auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .filter-container input, .filter-container select {
+            padding: 0.5rem;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .filter-container button {
+            padding: 0.5rem 1rem;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .filter-container button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="filter-container">
+        <input type="text" id="search" placeholder="Search by user or action">
+        <select id="filter">
+            <option value="all">All</option>
+            <option value="admin">Admin</option>
+            <option value="moderator">Moderator</option>
+        </select>
+        <button onclick="filterAuditTrail()">Filter</button>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>User</th>
+                <th>Role</th>
+                <th>Action</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody id="auditTrailTable">
+            <!-- Dynamic rows will be inserted here -->
+        </tbody>
+    </table>
+
+    <script>
+        const auditTrailData = [
+            { date: '2023-10-01', user: 'Admin1', role: 'Admin', action: 'Login', details: 'Logged into the system' },
+            { date: '2023-10-02', user: 'Mod1', role: 'Moderator', action: 'Edit', details: 'Edited user profile' },
+            { date: '2023-10-03', user: 'Admin2', role: 'Admin', action: 'Delete', details: 'Deleted a record' },
+            { date: '2023-10-04', user: 'Mod2', role: 'Moderator', action: 'Add', details: 'Added a new post' },
+            { date: '2023-10-05', user: 'Admin3', role: 'Admin', action: 'Update', details: 'Updated system settings' },
+            { date: '2023-10-06', user: 'Mod3', role: 'Moderator', action: 'View', details: 'Viewed audit logs' },
+            { date: '2023-10-07', user: 'Admin4', role: 'Admin', action: 'Create', details: 'Created a new user' },
+            { date: '2023-10-08', user: 'Mod4', role: 'Moderator', action: 'Edit', details: 'Edited a post' },
+            { date: '2023-10-09', user: 'Admin5', role: 'Admin', action: 'Delete', details: 'Deleted a comment' },
+            { date: '2023-10-10', user: 'Mod5', role: 'Moderator', action: 'Add', details: 'Added a new category' },
+            { date: '2023-10-11', user: 'Admin6', role: 'Admin', action: 'Login', details: 'Logged into the system' },
+            { date: '2023-10-12', user: 'Mod6', role: 'Moderator', action: 'Edit', details: 'Edited a user profile' },
+            { date: '2023-10-13', user: 'Admin7', role: 'Admin', action: 'Update', details: 'Updated user permissions' },
+            { date: '2023-10-14', user: 'Mod7', role: 'Moderator', action: 'View', details: 'Viewed user activity' },
+            { date: '2023-10-15', user: 'Admin8', role: 'Admin', action: 'Create', details: 'Created a new report' },
+            { date: '2023-10-16', user: 'Mod8', role: 'Moderator', action: 'Edit', details: 'Edited a report' },
+            { date: '2023-10-17', user: 'Admin9', role: 'Admin', action: 'Delete', details: 'Deleted a user account' },
+            { date: '2023-10-18', user: 'Mod9', role: 'Moderator', action: 'Add', details: 'Added a new tag' },
+            { date: '2023-10-19', user: 'Admin10', role: 'Admin', action: 'Login', details: 'Logged into the system' },
+            { date: '2023-10-20', user: 'Mod10', role: 'Moderator', action: 'Edit', details: 'Edited a category' }
+        ];
+
+        function loadAuditTrail() {
+            const tableBody = document.getElementById('auditTrailTable');
+            tableBody.innerHTML = '';
+            auditTrailData.forEach(entry => {
+                const row = `<tr>
+                    <td>${entry.date}</td>
+                    <td>${entry.user}</td>
+                    <td>${entry.role}</td>
+                    <td>${entry.action}</td>
+                    <td>${entry.details}</td>
+                </tr>`;
+                tableBody.innerHTML += row;
+            });
+        }
+
+        function filterAuditTrail() {
+            const search = document.getElementById('search').value.toLowerCase();
+            const filter = document.getElementById('filter').value;
+            const tableBody = document.getElementById('auditTrailTable');
+            tableBody.innerHTML = '';
+
+            const filteredData = auditTrailData.filter(entry => {
+                const matchesSearch = entry.user.toLowerCase().includes(search) || entry.action.toLowerCase().includes(search);
+                const matchesFilter = filter === 'all' || entry.role.toLowerCase() === filter;
+                return matchesSearch && matchesFilter;
+            });
+
+            filteredData.forEach(entry => {
+                const row = `<tr>
+                    <td>${entry.date}</td>
+                    <td>${entry.user}</td>
+                    <td>${entry.role}</td>
+                    <td>${entry.action}</td>
+                    <td>${entry.details}</td>
+                </tr>`;
+                tableBody.innerHTML += row;
+            });
+        }
+
+        // Load the audit trail on page load
+        window.onload = loadAuditTrail;
+    </script>
+</body>
+</html>

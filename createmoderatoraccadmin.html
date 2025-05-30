@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Moderator Account | Admin</title>
+    <link rel="icon" href="FAV.webp" type="image/png">
+    <style>
+        @font-face {
+            font-family: 'CustomFont';
+            src: url('CustomFont.woff2') format('woff2');
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'CustomFont', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        form {
+            width: 100%;
+            max-width: 500px;
+            padding: 30px 25px;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            background-color: #fff;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #007bff;
+            font-size: 24px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: #555;
+            font-size: 14px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px 12px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        input:focus, select:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        button[type="reset"] {
+            background-color: #007bff;
+            color: white;
+        }
+
+        button[type="reset"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <form action="#" method="POST">
+        <h2>Add Moderator Account</h2>
+
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" placeholder="Enter username" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter password" required>
+
+        <label for="confirm-password">Confirm Password</label>
+        <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm password" required>
+
+        <label for="role">Role</label>
+        <select id="role" name="role" required>
+            <option value="" disabled selected>Select role</option>
+            <option value="admin">Admin</option>
+            <option value="moderator">Moderator</option>
+        </select>
+
+        <label for="team-chapter">Team/Chapter</label>
+        <input type="text" id="team-chapter" name="team-chapter" placeholder="Enter team/chapter" required>
+        <button type="submit">Add Moderator</button>
+        <button type="reset">Reset</button>
+        <button type="button" onclick="window.location.href='admin_dashboard.html'" style="background-color: #007bff; color: white; margin-top: 10px;">Back to Dashboard</button>
+    </form>
+</body>
+</html>

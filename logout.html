@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="FAV.webp" type="image/png">
+    <title>Logout</title>
+</head>
+<body>
+    <script>
+        // Redirect to the login page after logout
+        function logout() {
+            // Clear session or local storage if used for authentication
+            sessionStorage.clear();
+            localStorage.clear();
+
+            // Redirect to the login page
+            window.location.href = "index.html"; // Change this to your login page URL
+        }
+
+        // Automatically call the logout function when the page loads
+        window.onload = logout;
+    </script>
+</body>
+</html>

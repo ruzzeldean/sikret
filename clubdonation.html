@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Club Donation Records | Moderator</title>
+    <link rel="icon" href="FAV.webp" type="image/png">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+
+        .main-content {
+            max-width: 800px;
+            margin: 50px auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #007bff;
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #555;
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f9f9f9;
+            color: #555;
+        }
+
+        td {
+            background-color: #ffffff;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        .delete-btn {
+            background-color: #dc3545;
+        }
+
+        .delete-btn:hover {
+            background-color: #a71d2a;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="main-content">
+        <h1>Club Donation Records</h1>
+        <h2>Donation Records</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Purpose/Description</th>
+                    <th>Start Date</th>
+                    <th>Due Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Charity Ride</td>
+                    <td>04/01/2025</td>
+                    <td>04/08/2025</td>
+                    <td class="actions">
+
+                <div class="actions">
+                    <button onclick="window.location.href='donationreq.html';">Edit Draft</button>
+                    <button class="delete-btn" onclick="confirmDelete()">Delete Draft</button>
+
+                    <script>
+                        function confirmDelete() {
+                            const confirmation = document.createElement('div');
+                            confirmation.style.position = 'fixed';
+                            confirmation.style.top = '0';
+                            confirmation.style.left = '0';
+                            confirmation.style.width = '100%';
+                            confirmation.style.height = '100%';
+                            confirmation.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+                            confirmation.style.display = 'flex';
+                            confirmation.style.justifyContent = 'center';
+                            confirmation.style.alignItems = 'center';
+                            confirmation.style.zIndex = '1000';
+
+                            const popup = document.createElement('div');
+                            popup.style.backgroundColor = '#fff';
+                            popup.style.padding = '20px';
+                            popup.style.borderRadius = '8px';
+                            popup.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
+                            popup.style.textAlign = 'center';
+
+                            const message = document.createElement('p');
+                            message.textContent = "Siguro ka bang i-dedelete mo ito?";
+                            message.style.marginBottom = '20px';
+
+                            const yesButton = document.createElement('button');
+                            yesButton.textContent = 'Yes';
+                            yesButton.style.marginRight = '10px';
+                            yesButton.onclick = function () {
+                                alert("Club Donation deleted successfully!");
+                                // Close the confirmation popup
+                                document.body.removeChild(confirmation);
+                                // Add logic here to delete the draft if needed
+                            };
+
+                            const noButton = document.createElement('button');
+                            noButton.textContent = 'No';
+                            noButton.onclick = function () {
+                                document.body.removeChild(confirmation);
+                            };
+
+                            popup.appendChild(message);
+                            popup.appendChild(yesButton);
+                            popup.appendChild(noButton);
+                            confirmation.appendChild(popup);
+                            document.body.appendChild(confirmation);
+                        }
+                    </script>
+                </div>
+            </li>
+            <!-- Add more draft items here if needed -->
+        </ul>
+    </div>
+</body>
+</html>
